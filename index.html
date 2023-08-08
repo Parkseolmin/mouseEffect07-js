@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Effect07 - javascript</title>
+    <style>
+      /* reset */
+      @font-face {
+        font-family: 'NEXON Lv1 Gothic OTF';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
+          format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        transition: all 0.2s;
+      }
+
+      a:hover {
+        border-bottom: 1px dashed #fff;
+      }
+
+      img {
+        width: 100%;
+        vertical-align: top;
+      }
+
+      ul {
+        padding: 10px 20px;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      body {
+        background: url(https://images.unsplash.com/photo-1690848095491-942c798366b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)
+          no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        height: 100vh;
+        transition: all 0.2s;
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 1.5;
+        font-family: 'NEXON Lv1 Gothic OTF';
+        cursor: none;
+      }
+
+      body::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(8, 64, 95, 0.9);
+        z-index: -1;
+      }
+
+      /* main */
+      .cursor {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        z-index: -1;
+        user-select: none;
+        pointer-events: none;
+        background: url(https://images.unsplash.com/photo-1690848095491-942c798366b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)
+          center center fixed;
+        background-size: cover;
+        border: 5px solid #fff;
+        overflow: hidden;
+      }
+
+      .contents {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .contents p {
+        max-width: 70vw;
+        font-size: 3vw;
+        text-align: justify;
+      }
+
+      .contents p:first-child {
+        font-size: 2vw;
+        line-height: 2;
+      }
+
+      .contents p em {
+        color: orange;
+        border-bottom: 2px dashed orange;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- main -->
+    <main>
+      <div class="cursor"></div>
+
+      <div class="contents">
+        <p>Success is the combination of action and determination</p>
+        <p><em>성공</em>은 행동과 <em>의지</em>의 결합이다.</p>
+      </div>
+    </main>
+    <!-- //main -->
+
+    <!-- info -->
+    <div class="info left">
+      <h1><a href="mouse00.html">Javascript Mouse Effect07</a></h1>
+      <p>마우스 방향에 따라 움직이기</p>
+    </div>
+    <!-- //info -->
+    <!-- script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script>
+      const cursor = document.querySelector('.cursor');
+      const circle = cursor.getBoundingClientRect();
+      // const width = cursor.offsetWidth;
+      // const height = cursor.offsetHeight;
+
+      function follow(e) {
+        gsap.to(cursor, {
+          duration: 0.3,
+          left: e.pageX - circle.width,
+          top: e.pageY - circle.height,
+        });
+      }
+
+      document.addEventListener('mousemove', follow);
+    </script>
+  </body>
+</html>
